@@ -2,39 +2,45 @@
 
 ## **Fledermaus**
 
+The flag is written in dingbats, where each symbol represents an ascii character.
+
 **Solution:**
+
 Use an online decoder
 [https://www.dcode.fr/itc-zapf-dingbats](https://www.dcode.fr/itc-zapf-dingbats)
+
 Flag: `OP{th4ts_fr3ak1n_b4ts}`
 
 ## Only humans allowed
 
 **Solution:**
-Check the /robots.txt file
-[https://opkoko.quest/robots.txt](https://opkoko.quest/robots.txt)
 
-[https://opkoko.quest/gyrf9g7l64](https://opkoko.quest/gyrf9g7l64)
+Check the `/robots.txt` file [https://opkoko.quest/robots.txt](https://opkoko.quest/robots.txt)
+
+The path `/gyrf9g7l64` is disallowed. 
+
+Visit [https://opkoko.quest/gyrf9g7l64](https://opkoko.quest/gyrf9g7l64) and you get the flag.
+
 Flag: `OP{r0B0t_0v3Rl0rdZ}`
 
 ## Due Diligence
 
 **Solution:**
-[https://twitter.com/vocro_corp/status/1651261547929387020](https://twitter.com/vocro_corp/status/1651261547929387020)
-[https://www.instagram.com/p/CsEd86hKuQE/](https://www.instagram.com/p/CsEd86hKuQE/)
-[https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/](https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/)
-[https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df](https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df)
+
+The [tweet](https://twitter.com/vocro_corp/status/1651261547929387020) on the profile has a reply from [@sam_bauer90](https://www.instagram.com/p/CsEd86hKuQE/). @sam_bauer90 has a tweet with a link to his Instagram, on the Instagram there is another post with the Vocro Corp logo with the location set to [Super Secret Underground Bunker](https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/). Click the location to see other posts from the same location. One of them is by the user cryptid.iso, referencing hacking. On their profile is an image with their Github username visible [electrocryptid](https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df). Visit the Github profile for electrocryptid and there will be a repo called secret-notes. In the commit history there is a commit with the message ‘Add secret note’ with the flag.
+
 Flag: `OP{pr0f3ssi0n4l_st4lk3r}`
 
 ## IT-Support
 
-Solution:
+**Solution:**
 
-Use `firmware-mod-kit` to extract the files.
+Extract the firmware to get the filesystem, a suggested tool is `firmware-mod-kit`. Search the files for any mention of `password`. The file `www/bsc_wlan.php` contains `$def_password =“T1B7ZDBudF9oNHJkYzBkM19jcjNkc30=“;`. Base64 decode the value and you get the flag.
 
 ```
-firmware-mod-kit/extract-firmware.sh firmware.bin
-grep -ir password
-base64flag | base64 -d
+firmware-mod-kit/extract-firmware.sh firmware.bin 
+grep -ir password 
+T1B7ZDBudF9oNHJkYzBkM19jcjNkc30= | base64 -d
 ```
 
 Flag: `OP{d0nt_h4rdc0d3_cr3ds}`
@@ -263,6 +269,11 @@ Flag: `OP{cracking_makes_computer_go_brrr}`
 
 ## Wrapper's Delight
 
+1. See that the path parameter in the URL is vulnerable to LFI
+2. See in `/robots.txt` an interesting PHP file which would be interesting to see through the LFI, but the webserver will just execute the PHP code so you cannot see the source directly through LFI.
+3. Use the PHP filter wrapper to encode the file contents, i.e., base64 and see the flag in the admin.php file.
+File wrapper: `php://filter/convert.base64-encode/resource=secretstuff/admin.php`
+
 ## trollolololol
 
 ## **Das Firmenbild**
@@ -319,5 +330,9 @@ Flag: `OP{Summer2023_here_we_go}`
 [https://gchq.github.io/CyberChef/#recipe=From_Hex('None')XOR({'option':'Latin1','string':'OPk0k0'},'Standard',false)&input=MDAwMDEwNTQ1ODA3MTA2MzE5NmYwMDQ1MjMwZjA2MDMwZjZmMGMwNDJkMTExNg](https://gchq.github.io/CyberChef/#recipe=From_Hex('None')XOR(%7B'option':'Latin1','string':'OPk0k0'%7D,'Standard',false)&input=MDAwMDEwNTQ1ODA3MTA2MzE5NmYwMDQ1MjMwZjA2MDMwZjZmMGMwNDJkMTExNg)
 
 ## Dynamic
+
+1. Run the binary, enter the option to "hacktheplanet", nothing happens.
+2. Do som dynamic analysis, use the strace command line utility to see that a POST request is being made when entering `3.hacktheplanet`.
+3. Use wireshark to see what is being posted, in the post body there will be a Base64 encoded string with the flag contents
 
 ## Zip Zip Zip
