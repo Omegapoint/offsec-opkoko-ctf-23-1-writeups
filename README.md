@@ -29,7 +29,9 @@ I was looking to invest in this cool new startup but heard rumors that they're i
 
 **Solution:**  
 
-The [tweet](https://twitter.com/vocro_corp/status/1651261547929387020) on the profile has a reply from [@sam_bauer90](https://www.instagram.com/p/CsEd86hKuQE/). @sam_bauer90 has a tweet with a link to his Instagram, on the Instagram there is another post with the Vocro Corp logo with the location set to [Super Secret Underground Bunker](https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/). Click the location to see other posts from the same location. One of them is by the user cryptid.iso, referencing hacking. On their profile is an image with their Github username visible [electrocryptid](https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df). Visit the Github profile for electrocryptid and there will be a repo called secret-notes. In the commit history there is a commit with the message ‘Add secret note’ with the flag.
+The [tweet](https://twitter.com/vocro_corp/status/1651261547929387020) on the profile has a reply from [@sam_bauer90](https://www.instagram.com/p/CsEd86hKuQE/).  @sam_bauer90 has a tweet with a link to his Instagram, on the Instagram there is another post with the Vocro Corp logo with the location set to [Super Secret Underground Bunker](https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/).  
+Click the location to see other posts from the same location. One of them is by the user cryptid.iso, referencing hacking. On their profile is an image with their Github username visible [electrocryptid](https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df).  
+Visit the Github profile for electrocryptid and there will be a repo called secret-notes. In the commit history there is a commit with the message ‘Add secret note’ with the flag.
 
 Flag: `OP{pr0f3ssi0n4l_st4lk3r}`
 
@@ -38,7 +40,9 @@ We found this old router but we don’t know the WiFi password, can you help us 
 
 **Solution:**  
 
-Extract the firmware to get the filesystem, a suggested tool is `firmware-mod-kit`. Search the files for any mention of `password`. The file `www/bsc_wlan.php` contains `$def_password =“T1B7ZDBudF9oNHJkYzBkM19jcjNkc30=“;`. Base64 decode the value and you get the flag.
+Extract the firmware to get the filesystem, a suggested tool is `firmware-mod-kit`.  
+Search the files for any mention of `password`. The file `www/bsc_wlan.php` contains `$def_password =“T1B7ZDBudF9oNHJkYzBkM19jcjNkc30=“;`.  
+Base64 decode the value and you get the flag.
 
 ```
 firmware-mod-kit/extract-firmware.sh firmware.bin 
@@ -140,6 +144,131 @@ Flag: `OP{h1d3_y82_4nd_5fq_s33k_:}`
 Challenge made by Simon Johansson.
 
 **Solution:**
+
+After investigation of leaked JWT's:
+
+```
+Header:
+{
+  "alg": "ES256",
+  "typ": "JWT"
+}
+
+And with claims:
+{
+  "exp": 1683420911,
+  "scopes": [
+    "capture"
+  ]
+}
+```
+
+Upon requesting with one of these against the API, we receive "token is expired." The goal is to find a flaw in the authentication/authorization flow, for example, by sending "alg": "none". However, it doesn't seem to help. The challenge is titled "Pseudo Random," can we do something about that?
+
+A signed JWT that uses the ES256 algorithm employs elliptic curves, specifically NIST P-256 (or secp256r1 or prime256v1). This algorithm has a random component, could that be what the title refers to?
+
+A signature consists of two components, r and s. These are a function of the message, random, and the private key. Specifically, the format of this signature is a byte array that is 64 bytes long, where r corresponds to the first 32 bytes and s corresponds to the rest.
+
+In other words,
+Signature[64] = { r[32] || s[32] }
+
+A JWT has the format "HEADER.BODY.SIGNATURE" where HEADER, BODY, and SIGNATURE are base64-encoded. If we examine the signature part in the JWTs, we can see that the signature looks very similar in the beginning.
+
+```
+1: "pRkS7dFZjw9mwURa9OaDpkZmhanXHGKnazVrsC9Oyf4Q-avxcJwsembKUibgpHmvAWml2vmAGTJnnsEpvG-Drw"
+2: "pRkS7dFZjw9mwURa9OaDpkZmhanXHGKnazVrsC9Oyf7DhYKI5ksm10sp3twPcwZySjDtVkumO48Yg6wzUVYB6w"
+3: "pRkS7dFZjw9mwURa9OaDpkZmhanXHGKnazVrsC9Oyf7CVPaoTiFWEBp63JaDKF2eU6ZU5xU-XJIIq9SecXFe8g"
+```
+
+They appear to start exactly the same: "pRkS7dFZjw9mwURa9OaDpkZmhanXHGKnazVrsC9Oyf".
+Could it be that the issuer of these tokens has reused the same random value for these tokens?
+
+To decode them, you can do it like this in Python:
+```
+def b64decode(s):
+    return base64.urlsafe_b64decode(s + '=' * (4 - len(s) % 4))
+
+token = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODM0MjA5MTEsInNjb3BlcyI6WyJjYXB0dXJlIl19.pRkS7dFZjw9mwURa9OaDpkZmhanXHGKnazVrsC9Oyf4Q-avxcJwsembKUibgpHmvAWml2vmAGTJnnsEpvG-Drw"
+parts = token.split('.')
+signature_bytes = b64decode(token[2])
+print(len(signature_bytes))
+r = signature_bytes[0:32]
+s = signature_bytes[32:]
+print(binascii.hexlify(r))
+print(binascii.hexlify(s))
+
+```
+
+Here we can clearly see that for the two JWTs that exist, the r value is the same.
+```
+b'a51912edd1598f0f66c1445af4e683a6466685a9d71c62a76b356bb02f4ec9fe'
+b'a51912edd1598f0f66c1445af4e683a6466685a9d71c62a76b356bb02f4ec9fe'
+```
+
+But the "s" value seems to differ:  
+```
+b'10f9abf1709c2c7a66ca5226e0a479af0169a5daf9801932679ec129bc6f83af'
+b'c3858288e64b26d74b29dedc0f7306724a30ed564ba63b8f1883ac33515601eb'
+```
+
+If the same random value has been used to sign two different messages, we can calculate the private key.
+It is well described here:
+https://billatnapier.medium.com/ecdsa-weakness-where-nonces-are-reused-2be63856a01a
+
+What is signed in a JWT is: HEADER.BODY, tex:  
+```
+Message: "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODM0MjA5MTEsInNjb3BlcyI6WyJjYXB0dXJlIl19"
+Signatur: "pRkS7dFZjw9mwURa9OaDpkZmhanXHGKnazVrsC9Oyf4Q-avxcJwsembKUibgpHmvAWml2vmAGTJnnsEpvG-Drw"
+```
+
+Here is a function to calculate the private key based on two messages + signatures:  
+```
+def extract_private_key(m1, m2, sig1, sig2):
+
+    m1 = normalise_bytes(m1)
+    m2 = normalise_bytes(m2)
+    h1 = normalise_bytes(sha256(m1).digest())
+    h2 = normalise_bytes(sha256(m2).digest())
+    h1 = _truncate_and_convert_digest(h1, NIST256p, True)
+    h2 = _truncate_and_convert_digest(h2, NIST256p, True)
+    r1, s1 = extract_r_s(sig1)
+    r2, s2 = extract_r_s(sig2)
+    n = NIST256p.order
+    d = ((s1*h2 % n - s2*h1 % n) * numbertheory.inverse_mod((s2*r1 % n - s1*r2 % n), n) % n)
+
+    return d, number_to_string(d, NIST256p.order)
+```
+
+The function returns the private key as a scalar or as a bytearray. We will use the bytearray:  
+```
+p, d = extract_private_key(message1, message2, sig1, sig2)
+extracted_key = SigningKey.from_string(d, curve=NIST256p, hashfunc=sha256)
+# Använder två olika kryptobibliotek här, hittade inte hur jag använde JWK biblioteket för att
+# använda skalären/byte arrayen och initiera en nyckel.
+extracted_jwk = jwk.JWK.from_pem(extracted_key.to_pem())
+```
+
+Then we can create our own JWT that is valid for one hour:  
+```
+payload = {
+    "exp": int(time.time()) + 3600,
+    "scopes": [
+        "capture"
+    ]
+}
+
+data = jwt.encode(payload, extracted_jwk.export_to_pem(private_key=True, password=None), algorithm="ES256")
+print("Generated extracted JWT")
+print(data)
+```
+
+Solution to get the flag:  
+Go into the folder `solution_pseudo-random`  
+Run:  
+```
+pip install -r requirements.txt
+python3 hack_tokens.py
+```
 
 Flag: `OP{CrYP70_83Rl1n}`
 
