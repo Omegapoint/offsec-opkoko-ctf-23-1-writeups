@@ -1,5 +1,115 @@
 # Challanges
 
+## **Fledermaus**
+
+**Solution:**
+Use an online decoder
+[https://www.dcode.fr/itc-zapf-dingbats](https://www.dcode.fr/itc-zapf-dingbats)
+Flag: `OP{th4ts_fr3ak1n_b4ts}`
+
+## Only humans allowed
+
+**Solution:**
+Check the /robots.txt file
+[https://opkoko.quest/robots.txt](https://opkoko.quest/robots.txt)
+
+[https://opkoko.quest/gyrf9g7l64](https://opkoko.quest/gyrf9g7l64)
+Flag: `OP{r0B0t_0v3Rl0rdZ}`
+
+## Due Diligence
+
+**Solution:**
+[https://twitter.com/vocro_corp/status/1651261547929387020](https://twitter.com/vocro_corp/status/1651261547929387020)
+[https://www.instagram.com/p/CsEd86hKuQE/](https://www.instagram.com/p/CsEd86hKuQE/)
+[https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/](https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/)
+[https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df](https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df)
+Flag: `OP{pr0f3ssi0n4l_st4lk3r}`
+
+## IT-Support
+
+Solution:
+
+Use `firmware-mod-kit` to extract the files.
+
+```
+firmware-mod-kit/extract-firmware.sh firmware.bin
+grep -ir password
+base64flag | base64 -d
+```
+
+Flag: `OP{d0nt_h4rdc0d3_cr3ds}`
+
+## Katze Vermisst
+
+![Untitled](Images/Untitled.png)
+
+********************Solution:********************
+Call the number on the poster and wait for voicemail. Write down the flag that is said in german.
+Flag: `OP{TH3_C4T_15_BACK}`
+
+## Big In Japan
+
+This is a puzzle called nonogram.
+
+![nonogram-op.png](Images/nonogram-op.png)
+
+**Solution:**
+When the nonogram is solved, it will reveal a QR code that can be scanned to get the flag.
+Flag: `OP{OPKoKoTokyo}`
+
+![qr.png](Images/qr.png)
+
+## ROuTe to 1337
+
+**Solution:**
+
+```
+https://cyberchef.org/#recipe=From_Base32('A-Z2-7%3D',true)From_Base32('A-Z2-7%3D',true)From_Base64('A-Za-z0-9%2B/%3D',true,false)ROT47(1337)&input=SkpLVlNWU0ZHUkZVVVNLT0dSRFVTVlNMSVJFVVVWU1dKNFpVV1FTTkdWR0VJUVpVSVJCRVdXU1hJWkNWT1UyV0paREVFUlNGS1laVTJSMkNLUkxFU1VKU0lORlVVVENFSUUzRUdWQ0tKWktGT05TVEdKSFVTVFNDSTVHVk1TU1NKTkZFNFJTTkdKRlVHUzJXSlZFRkdVS1RLWkdFRVZLVklWS1ZHV1NKTEZNVk9US1dKSkpFU1NTVElWSlZFU1MySlZERTJWMlpHSVpVUVNTS0pWQ1ZHVVpUSVZIVEtXS0VJNUlUR1QyTkpaREZPU0pWR05JVU9UU0NLNDJGU01TTUpWSkRHV0NCSlVaRUlUUzJLSktWT1dTRUxCSFVDV1NWSTRaVklSQ0tKWkpVUVRaVUlKS0VTVFNZSTVEVkdNMkZKNDJWU1JDSEtFWlU2VEtPSVpMVVNOSlRLRkRVNFFTWEdSTVRFVENOS0laVlFRS05HSkNFNFdTU0tWTFZVUkNZSlkyVEtSU0xLSkpGRVMyR0lWS1UyVktVSTVGRU1SQ0dJVk5FV1MyTElaTUZJVEtVTEpKVVlTSlVLWkhWRVRDUkk1TkVVVlpVSlZGVlNTMkNMQkRWU1VaU0s1RFU0TkNFS0ZKVVlUQ1BJSkhFT1MyV0dKRkU2UlNSSzVKVElSQ1E
+```
+
+Flag: `OP{4m_1_4lS0_l337_n0w?!?}`
+
+## Lockpicking Lawyer
+
+**Solution:**
+Pick the lock and get the flag.
+Flag: `OP{b0snian_bill}`
+
+## Dystopia
+
+Frequency analysis
+
+**Solution:**
+[https://www.guballa.de/substitution-solver](https://www.guballa.de/substitution-solver)
+Flag: `OP{B1G_BR0TH3R_1S_W4TCH1NG_Y0U}`
+
+## Double Trouble
+
+**Solution:**
+Pick the lock and get the flag.
+Flag: `OP{n0t_4_fluke}`
+
+## Hurts My Brain
+
+Brainfuck printed on paper.
+
+```
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>+++++++++.+.>+++++++++++++++++++++++.<++++++++++++++++++++.+++++.-----.-----.>--.<<++++++++++++++++++.>>----.<.>.--.<++++++.------.----------------.------------.+++++++++++++++.<+++++++++++++++.>>++++++++++.
+```
+
+**Solution:**
+Use OCR or write down the code and run it through a [interpreter online](https://www.dcode.fr/brainfuck-language).
+Flag: `OP{did_y0u_use_OCR?}`
+
+## Versteckspiel
+
+**Solution:**
+Find the hidden places.
+
+Flag: `OP{h1d3_y82_4nd_5fq_s33k_:}`
+
+## Pseudo Random
+
 ## DEFAULT
 
 Mifare Classic 1k - default
@@ -151,25 +261,28 @@ When put together this assembles an encrypted ZIP file with the password `(omega
 The file `flag.jpeg` contains hex data in the `Artist` and `Comment` field. When base64 decoded you get the flag.
 Flag: `OP{cracking_makes_computer_go_brrr}`
 
-## Katze Vermisst
+## Wrapper's Delight
 
-![Untitled](Images/Untitled.png)
+## trollolololol
 
-********************Solution:********************
-Call the number on the poster and wait for voicemail. Write down the flag that is said in german.
-Flag: `OP{TH3_C4T_15_BACK}`
+## **Das Firmenbild**
 
-## Big In Japan
+Solution:
 
-This is a puzzle called nonogram.
+```
+cat file.txt | base64 -d
+steghide extract -sf omegapoint.jpg -p omegapointopkokoinberlin2023
+cat flag.txt
+```
+Flag: `OP{ooH_yOu_fOunD_mE}`
 
-![nonogram-op.png](Images/nonogram-op.png)
+## Sanity Check
 
-**Solution:**
-When the nonogram is solved, it will reveal a QR code that can be scanned to get the flag.
-Flag: `OP{OPKoKoTokyo}`
+## The Brutal Zip
 
-![qr.png](Images/qr.png)
+zip2john 53cr3t.zip > john
+
+john john --wordlist=/usr/share/wordlists/rockyou.txt
 
 ## qroken
 
@@ -183,29 +296,13 @@ Flag: `OP{klipp_0ch_klistra}`
 
 ![original.png](Images/original.png)
 
-## Hurts My Brain
+## **In Plain Sight**
 
-Brainfuck printed on paper.
+Solution:
 
-```
-++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>+++++++++.+.>+++++++++++++++++++++++.<++++++++++++++++++++.+++++.-----.-----.>--.<<++++++++++++++++++.>>----.<.>.--.<++++++.------.----------------.------------.+++++++++++++++.<+++++++++++++++.>>++++++++++.
-```
+strings on the binary
 
-**Solution:**
-Use OCR or write down the code and run it through a [interpreter online](https://www.dcode.fr/brainfuck-language).
-Flag: `OP{did_y0u_use_OCR?}`
-
-## Lockpicking #1
-
-**Solution:**
-Pick the lock and get the flag.
-Flag: `OP{ok_this_was_easy}`
-
-## Lockpicking #2
-
-**Solution:**
-Pick the lock and get the flag.
-Flag: `OP{lockpicking_lawyer}`
+Flag: `OP{h1d1ng_1n_pla1n_s1gh7}`
 
 ## 1Password
 
@@ -217,96 +314,10 @@ Flag: `OP{Summer2023_here_we_go}`
 
 ![Untitled](Images/Untitled%201.png)
 
-# **Fledermaus**
-
-**Solution:**
-Use an online decoder
-[https://www.dcode.fr/itc-zapf-dingbats](https://www.dcode.fr/itc-zapf-dingbats)
-Flag: `OP{th4ts_fr3ak1n_b4ts}`
-
-# Only humans allowed
-
-**Solution:**
-Check the /robots.txt file
-[https://opkoko.quest/robots.txt](https://opkoko.quest/robots.txt)
-
-[https://opkoko.quest/gyrf9g7l64](https://opkoko.quest/gyrf9g7l64)
-Flag: `OP{r0B0t_0v3Rl0rdZ}`
-
-# Due Diligence
-
-**Solution:**
-[https://twitter.com/vocro_corp/status/1651261547929387020](https://twitter.com/vocro_corp/status/1651261547929387020)
-[https://www.instagram.com/p/CsEd86hKuQE/](https://www.instagram.com/p/CsEd86hKuQE/)
-[https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/](https://www.instagram.com/explore/locations/229426160413805/super-secret-underground-bunker/)
-[https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df](https://github.com/electrocryptid/secret-notes/commit/747099c3ce9fffcc4054400aca4c0d354abb55df)
-Flag: `OP{pr0f3ssi0n4l_st4lk3r}`
-
-# IT-Support
-
-Solution:
-
-Use `firmware-mod-kit` to extract the files.
-
-```
-firmware-mod-kit/extract-firmware.sh firmware.bin
-grep -ir password
-base64flag | base64 -d
-```
-
-Flag: `OP{d0nt_h4rdc0d3_cr3ds}`
-
-# ROuTe to 1337
-
-**Solution:**
-
-```
-https://cyberchef.org/#recipe=From_Base32('A-Z2-7%3D',true)From_Base32('A-Z2-7%3D',true)From_Base64('A-Za-z0-9%2B/%3D',true,false)ROT47(1337)&input=SkpLVlNWU0ZHUkZVVVNLT0dSRFVTVlNMSVJFVVVWU1dKNFpVV1FTTkdWR0VJUVpVSVJCRVdXU1hJWkNWT1UyV0paREVFUlNGS1laVTJSMkNLUkxFU1VKU0lORlVVVENFSUUzRUdWQ0tKWktGT05TVEdKSFVTVFNDSTVHVk1TU1NKTkZFNFJTTkdKRlVHUzJXSlZFRkdVS1RLWkdFRVZLVklWS1ZHV1NKTEZNVk9US1dKSkpFU1NTVElWSlZFU1MySlZERTJWMlpHSVpVUVNTS0pWQ1ZHVVpUSVZIVEtXS0VJNUlUR1QyTkpaREZPU0pWR05JVU9UU0NLNDJGU01TTUpWSkRHV0NCSlVaRUlUUzJLSktWT1dTRUxCSFVDV1NWSTRaVklSQ0tKWkpVUVRaVUlKS0VTVFNZSTVEVkdNMkZKNDJWU1JDSEtFWlU2VEtPSVpMVVNOSlRLRkRVNFFTWEdSTVRFVENOS0laVlFRS05HSkNFNFdTU0tWTFZVUkNZSlkyVEtSU0xLSkpGRVMyR0lWS1UyVktVSTVGRU1SQ0dJVk5FV1MyTElaTUZJVEtVTEpKVVlTSlVLWkhWRVRDUkk1TkVVVlpVSlZGVlNTMkNMQkRWU1VaU0s1RFU0TkNFS0ZKVVlUQ1BJSkhFT1MyV0dKRkU2UlNSSzVKVElSQ1E
-```
-
-Flag: `OP{4m_1_4lS0_l337_n0w?!?}`
-
-# Dystopia
-
-Frequency analysis
-
-**Solution:**
-[https://www.guballa.de/substitution-solver](https://www.guballa.de/substitution-solver)
-Flag: `OP{B1G_BR0TH3R_1S_W4TCH1NG_Y0U}`
-
-# Versteckspiel
-
-**Solution:**
-Find the hidden places.
-
-Flag: `OP{h1d3_y82_4nd_5fq_s33k_:}`
-
-# **In Plain Sight**
-
-Solution:
-
-strings on the binary
-
-Flag: `OP{h1d1ng_1n_pla1n_s1gh7}`
-
-# **Das Firmenbild**
-
-Solution:
-
-```
-cat file.txt | base64 -d
-steghide extract -sf omegapoint.jpg -p omegapointopkokoinberlin2023
-cat flag.txt
-```
-
-Flag: `OP{ooH_yOu_fOunD_mE}`
-
-# The Brutal Zip
-
-zip2john 53cr3t.zip > john
-
-john john --wordlist=/usr/share/wordlists/rockyou.txt
-
-# Red Dragon
+## Red Dragon
 
 [https://gchq.github.io/CyberChef/#recipe=From_Hex('None')XOR({'option':'Latin1','string':'OPk0k0'},'Standard',false)&input=MDAwMDEwNTQ1ODA3MTA2MzE5NmYwMDQ1MjMwZjA2MDMwZjZmMGMwNDJkMTExNg](https://gchq.github.io/CyberChef/#recipe=From_Hex('None')XOR(%7B'option':'Latin1','string':'OPk0k0'%7D,'Standard',false)&input=MDAwMDEwNTQ1ODA3MTA2MzE5NmYwMDQ1MjMwZjA2MDMwZjZmMGMwNDJkMTExNg)
+
+## Dynamic
+
+## Zip Zip Zip
