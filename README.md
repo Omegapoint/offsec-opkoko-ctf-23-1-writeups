@@ -522,3 +522,11 @@ done
 ```
 
 Flag: `OP{7h475_4107_0F_Z1P5}`
+
+## The Pink Panther
+This looks easy
+
+**Solution:**  
+Pick the lock and get the flag.  
+
+Flag: `OP{h4rder_th4n_it_looks}`
