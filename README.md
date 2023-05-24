@@ -135,8 +135,20 @@ Flag: `OP{did_y0u_use_OCR?}`
 ## Versteckspiel
 Count to 10 then try to find us.
 
+![place1.jpg](Images/place1.jpg)
+
+![place2.jpg](Images/place2.jpg)
+
+![place3.jpg](Images/place3.jpg)
+
 **Solution:**  
-Find the hidden places.  
+Find the hidden places.
+
+*Place 1*: This part of the flag was hidden in room B92 (floor B) in the gray pocket for remote controls.
+
+*Place 2*: On the bottom floor (floor A) at the other end of the room.
+
+*Place 3*: On the top floor (floor C) under one of the stairs.
 
 Flag: `OP{h1d3_y82_4nd_5fq_s33k_:}`
 
