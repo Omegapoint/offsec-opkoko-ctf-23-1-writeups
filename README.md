@@ -1,4 +1,4 @@
-# Challanges
+# Challenges
 
 Writeups of the challenges in the [OPKoKo CTF](https://opkoko.quest/) that was held in Berlin from 2023-05-18 until 2023-05-20.
 
