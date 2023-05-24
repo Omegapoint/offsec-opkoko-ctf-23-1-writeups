@@ -89,7 +89,6 @@ I have a very cryptic colleague here at KoKo who wont leave me alone, keeps repe
 
 [Solution cyberchef](https://cyberchef.org/#recipe=From_Base32('A-Z2-7%3D',true)From_Base32('A-Z2-7%3D',true)From_Base64('A-Za-z0-9%2B/%3D',true,false)ROT47(1337)&input=SkpLVlNWU0ZHUkZVVVNLT0dSRFVTVlNMSVJFVVVWU1dKNFpVV1FTTkdWR0VJUVpVSVJCRVdXU1hJWkNWT1UyV0paREVFUlNGS1laVTJSMkNLUkxFU1VKU0lORlVVVENFSUUzRUdWQ0tKWktGT05TVEdKSFVTVFNDSTVHVk1TU1NKTkZFNFJTTkdKRlVHUzJXSlZFRkdVS1RLWkdFRVZLVklWS1ZHV1NKTEZNVk9US1dKSkpFU1NTVElWSlZFU1MySlZERTJWMlpHSVpVUVNTS0pWQ1ZHVVpUSVZIVEtXS0VJNUlUR1QyTkpaREZPU0pWR05JVU9UU0NLNDJGU01TTUpWSkRHV0NCSlVaRUlUUzJLSktWT1dTRUxCSFVDV1NWSTRaVklSQ0tKWkpVUVRaVUlKS0VTVFNZSTVEVkdNMkZKNDJWU1JDSEtFWlU2VEtPSVpMVVNOSlRLRkRVNFFTWEdSTVRFVENOS0laVlFRS05HSkNFNFdTU0tWTFZVUkNZSlkyVEtSU0xLSkpGRVMyR0lWS1UyVktVSTVGRU1SQ0dJVk5FV1MyTElaTUZJVEtVTEpKVVlTSlVLWkhWRVRDUkk1TkVVVlpVSlZGVlNTMkNMQkRWU1VaU0s1RFU0TkNFS0ZKVVlUQ1BJSkhFT1MyV0dKRkU2UlNSSzVKVElSQ1E)
 
-
 Flag: `OP{4m_1_4lS0_l337_n0w?!?}`
 
 ## Lockpicking Lawyer
@@ -105,9 +104,7 @@ I asked my friends at my local book club if I could borrow their favourite book.
 A couple of days later, the people at the book club felt bad and told me that they had made some changes to the classic literature and handed me this weird looking text. Could you help me figure out what it is?
 
 **Solution:**  
-Frequency analysis  
-
-[https://www.guballa.de/substitution-solver](https://www.guballa.de/substitution-solver)  
+Frequency analysis will reveal that the text is from George Orwell's novel 1984. Use a [tool](https://www.guballa.de/substitution-solver) or manually substitute the letters to reveal the flag in the text.
 
 Flag: `OP{B1G_BR0TH3R_1S_W4TCH1NG_Y0U}`
 
