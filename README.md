@@ -69,7 +69,7 @@ This is a puzzle called nonogram.
 ![nonogram-op.png](Images/nonogram-op.png)
 
 **Solution:**  
-When the nonogram is solved, it will reveal a QR code that can be scanned to get the flag.  
+When the nonogram is solved, it will reveal a QR code that can be scanned to get the flag. The rules for how you solve these puzzles can be found [here](https://puzzlygame.com/pages/how_to_play_nonograms/).
 
 ![qr.png](Images/qr.png)
 
@@ -278,15 +278,7 @@ Hint: RFID
 **Solution:**  
 Mifare Classic 1k - default
 
-Make sure to check if the Magic card is valid using `hf 14a info`
-
-```
-hf mf csetblk --blk 44 -d 4f507b64306e745f7573335f64336634
-hf mf csetblk --blk 45 -d 31745f6b6579357d0000000000000000
-```
-
-`hf mf cview`  
-Read tag with Android phone using MIFARE Clasic Tool. Standard key FFFFFFFFFFFF. Decrypt the hex data to get the key.  
+Read tag with Android phone using MIFARE Clasic Tool. Standard key `FFFFFFFFFFFF`. Decrypt the hex data to get the key.  
 
 Flag: `OP{d0nt_us3_d3f41t_key5}`
 
@@ -296,88 +288,25 @@ This card seems to use multiple keys...
 **Solution:**  
 Mifare Classic 1k - harder key
 
-```
-hf mf csetblk --blk 1 -d 57656c636f6d6520746f20746865204d
-hf mf csetblk --blk 2 -d 6966617265206368616c6c616e676521
-
-hf mf csetblk --blk 4 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 5 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 6 -d 65793a20313132323333343435353636
-
-hf mf csetblk --blk 8 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 9 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 10 -d 65793a20414142424343444445454646
-
-hf mf csetblk --blk 12 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 13 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 14 -d 65793a20413041314132413341344135
-
-hf mf csetblk --blk 16 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 17 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 18 -d 65793a20423042314232423342344235
-
-hf mf csetblk --blk 20 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 21 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 22 -d 65793a20344230423230313037434342
-
-hf mf csetblk --blk 24 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 25 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 26 -d 65793a20323034373532343534313534
-
-hf mf csetblk --blk 28 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 29 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 30 -d 65793a20414346464646464646464646
-
-hf mf csetblk --blk 32 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 33 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 34 -d 65793a20363437314135454632443141
-
-hf mf csetblk --blk 36 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 37 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 38 -d 65793a20444541444245454545454546
-
-hf mf csetblk --blk 40 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 41 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 42 -d 65793a20423030303030303030304235
-
-hf mf csetblk --blk 44 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 45 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 46 -d 65793a20313233393837414234354141
-
-hf mf csetblk --blk 48 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 49 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 50 -d 65793a20414243444546363436343634
-
-hf mf csetblk --blk 52 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 53 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 54 -d 65793a20424545464245454642454546
-
-hf mf csetblk --blk 56 -d 54686520666c6167206973206e6f7420
-hf mf csetblk --blk 57 -d 686572652e205472792074686973206b
-hf mf csetblk --blk 58 -d 65793a20313333333337414243444546
-
-hf mf csetblk --blk 60 -d 57656c6c20646f6e6521204865726520
-hf mf csetblk --blk 61 -d 697320796f757220666c6167202d204f
-hf mf csetblk --blk 62 -d 507b6b6579735f6172655f6576696c7d
-
-hf mf csetblk --blk 11 -d 11223344556608778F00112233445566
-hf mf csetblk --blk 15 -d AABBCCDDEEFF08778F00AABBCCDDEEFF
-hf mf csetblk --blk 19 -d A0A1A2A3A4A508778F00A0A1A2A3A4A5
-hf mf csetblk --blk 23 -d B0B1B2B3B4B508778F00B0B1B2B3B4B5
-hf mf csetblk --blk 27 -d 4B0B20107CCB08778F004B0B20107CCB
-hf mf csetblk --blk 31 -d 20475245415408778F00204752454154
-hf mf csetblk --blk 35 -d ACFFFFFFFFFF08778F00ACFFFFFFFFFF
-hf mf csetblk --blk 39 -d 6471A5EF2D1A08778F006471A5EF2D1A
-hf mf csetblk --blk 43 -d DEADBEEEEEEF08778F00DEADBEEEEEEF
-hf mf csetblk --blk 47 -d B000000000B508778F00B000000000B5
-hf mf csetblk --blk 51 -d 123987AB45AA08778F00123987AB45AA
-hf mf csetblk --blk 55 -d ABCDEF64646408778F00ABCDEF646464
-hf mf csetblk --blk 59 -d BEEFBEEFBEEF08778F00BEEFBEEFBEEF
-hf mf csetblk --blk 63 -d 133337ABCDEF08778F00133337ABCDEF
+Read the first sector and get the key to the next sector. Use an app such as MIFARE Classic Tool on Android and add the new key to a wordlist. Rinse and repeat until you decrypt the last sector where you will find the flag. The following keys were used:
 
 ```
-
-Read the first sector and get the key to the next sector. Use an app such as MIFARE Classic Tool on Android.  
+FFFFFFFFFFFF
+112233445566
+AABBCCDDEEFF
+A0A1A2A3A4A5
+B0B1B2B3B4B5
+4B0B20107CCB
+204752454154
+ACFFFFFFFFFF
+6471A5EF2D1A
+DEADBEEEEEEF
+B000000000B5
+123987AB45AA
+ABCDEF646464
+BEEFBEEFBEEF
+133337ABCDEF
+```
 
 Flag: `OP{keys_are_evil}`
 
@@ -387,6 +316,7 @@ Flag: `OP{keys_are_evil}`
 **Solution:**
 Mifare Classic 1k - Encrypted ZIP-file
 
+Contents of the card:
 ```
 hf mf csetblk --blk 4 -d 504b0304140009000800f8445a55f3e5
 hf mf csetblk --blk 5 -d 286445010000b901000009001c00666c
@@ -420,12 +350,11 @@ hf mf csetblk --blk 41 -d a48100000000666c61672e6a70656755
 hf mf csetblk --blk 42 -d 5405000353f2586375780b000104e803
 hf mf csetblk --blk 44 -d 000004e8030000504b05060000000001
 hf mf csetblk --blk 45 -d 0001004f000000980100000000000000
-
 ```
 
 First read the Mifare Classic 1k card and dump the contents.  
-When put together this assembles an encrypted ZIP file with the password `(omega)` that is available in rockyou.  
-The file `flag.jpeg` contains hex data in the `Artist` and `Comment` field. When base64 decoded you get the flag.  
+When put together this assembles an encrypted ZIP file with the password `(omega)` that is available in rockyou (sorry!).
+The file `flag.jpeg` contains hex data in the `Artist` and `Comment` field. When `base64` decoded you get the flag.  
 
 Flag: `OP{cracking_makes_computer_go_brrr}`
 
