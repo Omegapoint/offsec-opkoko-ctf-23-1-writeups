@@ -488,7 +488,10 @@ Flag: `OP{Summer2023_here_we_go}`
 ## Red Dragon
 Can you help me find out what is going on with this executable?
 
-**Solution:**  
+**Solution:**
+
+Use Ghidra to reverse the function that does the XOR on a byte buffer with the key `OPk0k0`. Use Cyberchef or other tools to decode the flag.
+
 [https://gchq.github.io/CyberChef/#recipe=From_Hex('None')XOR({'option':'Latin1','string':'OPk0k0'},'Standard',false)&input=MDAwMDEwNTQ1ODA3MTA2MzE5NmYwMDQ1MjMwZjA2MDMwZjZmMGMwNDJkMTExNg](https://gchq.github.io/CyberChef/#recipe=From_Hex('None')XOR(%7B'option':'Latin1','string':'OPk0k0'%7D,'Standard',false)&input=MDAwMDEwNTQ1ODA3MTA2MzE5NmYwMDQ1MjMwZjA2MDMwZjZmMGMwNDJkMTExNg)
 
 Flag: `OP{d37_3r_kul_m3d_CTF!}`
