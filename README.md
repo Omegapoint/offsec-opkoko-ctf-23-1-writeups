@@ -1,5 +1,9 @@
 # Challanges
 
+Writeups of the challenges in the [OPKoKo CTF](https://opkoko.quest/) that was held in Berlin from 2023-05-18 until 2023-05-23.
+
+![scoreboard](Images/scoreboard.png)
+
 ## **Fledermaus**
 
 The flag is written in dingbats, where each symbol represents an ascii character.
